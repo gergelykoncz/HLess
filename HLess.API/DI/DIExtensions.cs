@@ -1,4 +1,11 @@
 ﻿using HLess.Data;
+using HLess.Data.Repository;
+using HLess.Data.Repository.Base;
+using HLess.Data.Repository.Interfaces;
+using HLess.Logic.Facades;
+using HLess.Logic.Facades.Interfaces;
+using HLess.Logic.Services;
+using HLess.Logic.Services.Interfaces;
 using HLess.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +24,13 @@ namespace HLess.API.DI
             {
                 options.UseSqlServer(configuration[ConfigKeys.CONNECTION_STRING]);
             });
+
+            services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+            services.AddScoped<IContentTypeRepository, ContentTypeRepository>();
+            
+            services.AddScoped<IContentTypeService, ContentTypeService>();
+
+            services.AddScoped<IContentTypeFacade, ContentTypeFacade>();
 
             return services;
         }

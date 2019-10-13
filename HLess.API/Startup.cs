@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace HLess
 {
@@ -27,7 +30,7 @@ namespace HLess
         {
             services.RegisterServices(this.configuration);
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.User.RequireUniqueEmail = true)
+            services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options => options.User.RequireUniqueEmail = true)
                 .AddEntityFrameworkStores<HLessDataContext>()
                 .AddDefaultTokenProviders();
 
@@ -40,6 +43,14 @@ namespace HLess
             services.AddSwaggerGen(config =>
             {
                 config.SwaggerDoc("v1", new OpenApiInfo { Title = "HLess API", Version = "v1" });
+
+                var apiXmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var apiXmlPath = Path.Combine(AppContext.BaseDirectory, apiXmlFile);
+                config.IncludeXmlComments(apiXmlPath);
+
+                var modelsXmlFile = $"HLess.Models.xml";
+                var modelsXmlPath = Path.Combine(AppContext.BaseDirectory, modelsXmlFile);
+                config.IncludeXmlComments(modelsXmlPath);
             });
         }
 

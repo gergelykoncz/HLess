@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HLess.Models</name>
+    </assembly>
+    <members>
+        <member name="T:HLess.Models.Entities.ApplicationUser">
+            <summary>
+            Class for the application users.
+            </summary>
+        </member>
+        <member name="T:HLess.Models.Entities.ContentField">
+            <summary>
+            Represents a field in a content type
+            </summary>
+        </member>
+        <member name="T:HLess.Models.Entities.ContentType">
+            <summary>
+            Represents a user-created content type.
+            </summary>
+        </member>
+        <member name="T:HLess.Models.Enums.ConfigKeys">
+            <summary>
+            Config key name collection.
+            </summary>
+        </member>
+        <member name="F:HLess.Models.Enums.ConfigKeys.CONNECTION_STRING">
+            <summary>
+            The name of the key where the db connection string is stored.
+            </summary>
+        </member>
+        <member name="T:HLess.Models.Enums.ContentFieldType">
+            <summary>
+            Enum representing types for content fields.
+            </summary>
+        </member>
+        <member name="F:HLess.Models.Enums.ContentFieldType.ShortText">
+            <summary>
+            Short text
+            </summary>
+        </member>
+        <member name="F:HLess.Models.Enums.ContentFieldType.LongText">
+            <summary>
+            Long text
+            </summary>
+        </member>
+        <member name="F:HLess.Models.Enums.ContentFieldType.HTML">
+            <summary>
+            HTML (WYSIWYG editor)
+            </summary>
+        </member>
+        <member name="F:HLess.Models.Enums.ContentFieldType.Date">
+            <summary>
+            Date/time
+            </summary>
+        </member>
+        <member name="F:HLess.Models.Enums.ContentFieldType.Dropdown">
+            <summary>
+            Dropdown with pre-defined values
+            </summary>
+        </member>
+        <member name="F:HLess.Models.Enums.ContentFieldType.Checkbox">
+            <summary>
+            Checkbox for boolean values
+            </summary>
+        </member>
+        <member name="F:HLess.Models.Enums.ContentFieldType.Number">
+            <summary>
+            Number
+            </summary>
+        </member>
+        <member name="F:HLess.Models.Enums.ContentFieldType.Media">
+            <summary>
+            Media (image, video, etc.), mostly a link
+            </summary>
+        </member>
+        <member name="F:HLess.Models.Enums.ContentFieldType.Reference">
+            <summary>
+            Reference to another content type
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Responses.BaseDto.Id">
+            <summary>
+            The Id of the resource.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Responses.BaseDto.Name">
+            <summary>
+            The user-friendly name of the resource.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Responses.BaseDto.Slug">
+            <summary>
+            The API slug of the resource.
+            </summary>
+        </member>
+        <member name="T:HLess.Models.Responses.ContentFieldDto">
+            <summary>
+            Model representing a field in a content type.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Responses.ContentFieldDto.FieldType">
+            <summary>
+            The type of the field.
+            </summary>
+        </member>
+        <member name="T:HLess.Models.Responses.ContentTypeDto">
+            <summary>
+            Model class for content types.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Responses.ContentTypeDto.Fields">
+            <summary>
+            The fields associated with this content type.
+            </summary>
+        </member>
+    </members>
+</doc>

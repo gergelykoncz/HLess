@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HLess.API</name>
+    </assembly>
+    <members>
+        <member name="T:HLess.API.DI.DIExtensions">
+            <summary>
+            Extension methods for dependency injection
+            </summary>
+        </member>
+    </members>
+</doc>
