@@ -6,6 +6,8 @@ using HLess.Logic.Facades;
 using HLess.Logic.Facades.Interfaces;
 using HLess.Logic.Services;
 using HLess.Logic.Services.Interfaces;
+using HLess.Logic.Wrappers;
+using HLess.Logic.Wrappers.Interfaces;
 using HLess.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -27,10 +29,14 @@ namespace HLess.API.DI
 
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IContentTypeRepository, ContentTypeRepository>();
+
+            services.AddScoped<IUserManagerWrapper, UserManagerWrapper>();
             
             services.AddScoped<IContentTypeService, ContentTypeService>();
+            services.AddScoped<IAccountService, AccountService>();
 
             services.AddScoped<IContentTypeFacade, ContentTypeFacade>();
+            services.AddScoped<IAccountFacade, AccountFacade>();
 
             return services;
         }

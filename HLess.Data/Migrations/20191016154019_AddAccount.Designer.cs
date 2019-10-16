@@ -4,14 +4,16 @@ using HLess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HLess.Data.Migrations
 {
     [DbContext(typeof(HLessDataContext))]
-    partial class HLessDataContextModelSnapshot : ModelSnapshot
+    [Migration("20191016154019_AddAccount")]
+    partial class AddAccount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,21 +47,6 @@ namespace HLess.Data.Migrations
                     b.ToTable("Account");
                 });
 
-            modelBuilder.Entity("HLess.Models.Entities.AccountUser", b =>
-                {
-                    b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("AccountId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AccountUser");
-                });
-
             modelBuilder.Entity("HLess.Models.Entities.ApplicationUser", b =>
                 {
                     b.Property<Guid>("Id")
@@ -68,6 +55,10 @@ namespace HLess.Data.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("AccountId")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -117,6 +108,8 @@ namespace HLess.Data.Migrations
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -346,17 +339,11 @@ namespace HLess.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("HLess.Models.Entities.AccountUser", b =>
+            modelBuilder.Entity("HLess.Models.Entities.ApplicationUser", b =>
                 {
                     b.HasOne("HLess.Models.Entities.Account", "Account")
-                        .WithMany("AccountUsers")
+                        .WithMany("Users")
                         .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HLess.Models.Entities.ApplicationUser", "User")
-                        .WithMany("AccountUsers")
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

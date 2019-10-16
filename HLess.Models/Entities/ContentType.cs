@@ -22,7 +22,7 @@ namespace HLess.Models.Entities
         public Guid OwnerId { get; set; }
 
         [ForeignKey("OwnerId")]
-        public ApplicationUser Owner { get; set; }
+        public Account Owner { get; set; }
 
         public virtual ICollection<ContentField> Fields { get; set; }
     }

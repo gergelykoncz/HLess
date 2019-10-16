@@ -4,6 +4,16 @@
         <name>HLess.API</name>
     </assembly>
     <members>
+        <member name="T:HLess.API.Controllers.AccountController">
+            <summary>
+            Controller for account-related actions.
+            </summary>
+        </member>
+        <member name="M:HLess.API.Controllers.AccountController.Register(HLess.Models.Requests.CreateAccountDto)">
+            <summary>
+            Endpoint for registering a new account.
+            </summary>
+        </member>
         <member name="T:HLess.API.DI.DIExtensions">
             <summary>
             Extension methods for dependency injection

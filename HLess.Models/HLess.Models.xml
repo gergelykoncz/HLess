@@ -4,6 +4,46 @@
         <name>HLess.Models</name>
     </assembly>
     <members>
+        <member name="T:HLess.Models.Entities.Account">
+            <summary>
+            Entity representing an account (company)
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Entities.Account.Name">
+            <summary>
+            The name of the account.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Entities.Account.AccountUsers">
+            <summary>
+            The users belonging to the account.
+            </summary>
+        </member>
+        <member name="T:HLess.Models.Entities.AccountUser">
+            <summary>
+            Many-to-many mapping entity between Users and Accounts.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Entities.AccountUser.UserId">
+            <summary>
+            The user id.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Entities.AccountUser.AccountId">
+            <summary>
+            The account id.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Entities.AccountUser.User">
+            <summary>
+            The user reference of the join.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Entities.AccountUser.Account">
+            <summary>
+            The account reference of the join.
+            </summary>
+        </member>
         <member name="T:HLess.Models.Entities.ApplicationUser">
             <summary>
             Class for the application users.
@@ -77,6 +117,36 @@
         <member name="F:HLess.Models.Enums.ContentFieldType.Reference">
             <summary>
             Reference to another content type
+            </summary>
+        </member>
+        <member name="T:HLess.Models.Exceptions.ApiException">
+            <summary>
+            Main exception type, handled by middleware.
+            </summary>
+        </member>
+        <member name="T:HLess.Models.Requests.CreateAccountDto">
+            <summary>
+            DTO containing registration information.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Requests.CreateAccountDto.Email">
+            <summary>
+            The email of the newly signing up user.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Requests.CreateAccountDto.Password">
+            <summary>
+            The password of the user.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Requests.CreateAccountDto.ConfirmPassword">
+            <summary>
+            The password confirmation.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Requests.CreateAccountDto.AccountName">
+            <summary>
+            The name of the account.
             </summary>
         </member>
         <member name="P:HLess.Models.Responses.BaseDto.Id">

@@ -4,61 +4,22 @@ using HLess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HLess.Data.Migrations
 {
     [DbContext(typeof(HLessDataContext))]
-    partial class HLessDataContextModelSnapshot : ModelSnapshot
+    [Migration("20191016153319_ContentTypeField")]
+    partial class ContentTypeField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("HLess.Models.Entities.Account", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatedByUserId");
-
-                    b.ToTable("Account");
-                });
-
-            modelBuilder.Entity("HLess.Models.Entities.AccountUser", b =>
-                {
-                    b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("AccountId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AccountUser");
-                });
 
             modelBuilder.Entity("HLess.Models.Entities.ApplicationUser", b =>
                 {
@@ -337,30 +298,6 @@ namespace HLess.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("HLess.Models.Entities.Account", b =>
-                {
-                    b.HasOne("HLess.Models.Entities.ApplicationUser", "CreatedByUser")
-                        .WithMany()
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("HLess.Models.Entities.AccountUser", b =>
-                {
-                    b.HasOne("HLess.Models.Entities.Account", "Account")
-                        .WithMany("AccountUsers")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HLess.Models.Entities.ApplicationUser", "User")
-                        .WithMany("AccountUsers")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("HLess.Models.Entities.ContentField", b =>
                 {
                     b.HasOne("HLess.Models.Entities.ContentType", null)
@@ -382,7 +319,7 @@ namespace HLess.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HLess.Models.Entities.Account", "Owner")
+                    b.HasOne("HLess.Models.Entities.ApplicationUser", "Owner")
                         .WithMany()
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
