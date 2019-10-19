@@ -24,5 +24,11 @@
             IdentityServer4 configuration
             </summary>
         </member>
+        <member name="T:HLess.API.Swagger.AuthorizeOperationFilter">
+            <summary>
+            Operation filter for marking authorized routes in Swagger
+            and token integration.
+            </summary>
+        </member>
     </members>
 </doc>

@@ -1,5 +1,6 @@
 using HLess.API.DI;
 using HLess.API.Identity;
+using HLess.API.Swagger;
 using HLess.Data;
 using HLess.Models.Entities;
 using IdentityServer4.AspNetIdentity;
@@ -60,6 +61,21 @@ namespace HLess
                 var modelsXmlFile = $"HLess.Models.xml";
                 var modelsXmlPath = Path.Combine(AppContext.BaseDirectory, modelsXmlFile);
                 config.IncludeXmlComments(modelsXmlPath);
+
+                config.OperationFilter<AuthorizeOperationFilter>();
+
+                config.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme()
+                {
+                    Type = SecuritySchemeType.OAuth2,
+                    Flows = new OpenApiOAuthFlows()
+                    {
+                        Password = new OpenApiOAuthFlow()
+                        {
+                            TokenUrl = new Uri("/connect/token", UriKind.Relative),
+                            RefreshUrl = new Uri("/connect/token", UriKind.Relative)
+                        }
+                    }
+                });
             });
         }
 

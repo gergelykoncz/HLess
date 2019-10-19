@@ -1,5 +1,6 @@
 ﻿using HLess.Logic.Facades.Interfaces;
 using HLess.Models.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ namespace HLess.API.Controllers
     [ApiVersion("1")]
     [ApiController]
     [Route("contentType")]
+    [Authorize]
     public class ContentTypeController : Controller
     {
         private readonly IContentTypeFacade facade;
