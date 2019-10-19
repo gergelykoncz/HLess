@@ -3,6 +3,7 @@ using HLess.Logic.Services.Interfaces;
 using HLess.Models.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace HLess.Logic.Services
@@ -18,7 +19,7 @@ namespace HLess.Logic.Services
 
         public async Task<IEnumerable<ContentType>> GetContentTypesForUser(Guid userId, bool includeDeleted = false)
         {
-            var contentTypes = await this.repository.GetByAsync(x => x.OwnerId == userId && includeDeleted ? x.Deleted == true : x.Deleted == false);
+            var contentTypes = await this.repository.GetByAsync(x => x.Site.Account.AccountUsers.Any(au => au.UserId == userId) && includeDeleted ? x.Deleted == true : x.Deleted == false);
             return contentTypes;
         }
     }

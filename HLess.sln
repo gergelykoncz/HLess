@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HLess.Logic", "HLess.Logic\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{58155000-A416-4150-A5D4-E458192BC1AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HLess.UnitTests", "HLess.UnitTests\HLess.UnitTests.csproj", "{A26F1851-1FF1-454E-B8B5-86B142A57F75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HLess.UnitTests", "HLess.UnitTests\HLess.UnitTests.csproj", "{A26F1851-1FF1-454E-B8B5-86B142A57F75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

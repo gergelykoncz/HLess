@@ -50,6 +50,8 @@ namespace HLess.UnitTests.Logic.Facades
             Assert.AreEqual(model.Email, registerCallUser.UserName);
             Assert.AreEqual(model.AccountName, registerCallUser.AccountUsers.First().Account.Name);
             Assert.AreEqual(registerCallUser, registerCallUser.AccountUsers.First().Account.CreatedByUser);
+            Assert.AreEqual(model.AccountName, registerCallUser.AccountUsers.First().Account.Sites.First().Name);
+            Assert.IsTrue(registerCallUser.AccountUsers.First().Account.Sites.First().IsDefault);
 
             this.accountService.Verify(x => x.UpdateUser(registerCallUser));
         }

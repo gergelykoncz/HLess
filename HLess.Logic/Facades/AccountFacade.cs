@@ -3,6 +3,7 @@ using HLess.Logic.Services.Interfaces;
 using HLess.Models.Entities;
 using HLess.Models.Requests;
 using HLess.Models.Responses;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -31,7 +32,18 @@ namespace HLess.Logic.Facades
                     Account = new Account
                     {
                       Name = model.AccountName,
-                      CreatedByUser = user
+                      CreatedByUser = user,
+                      CreatedDate = DateTime.Now,
+                      Sites = new List<Site>()
+                      {
+                          new Site
+                          {
+                              Name = model.AccountName,
+                              IsDefault = true,
+                              CreatedByUser = user,
+                              CreatedDate = DateTime.Now
+                          }
+                      }
                     }
                 }
             };

@@ -19,5 +19,10 @@
             Extension methods for dependency injection
             </summary>
         </member>
+        <member name="T:HLess.API.Identity.Config">
+            <summary>
+            IdentityServer4 configuration
+            </summary>
+        </member>
     </members>
 </doc>

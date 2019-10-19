@@ -4,14 +4,16 @@ using HLess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HLess.Data.Migrations
 {
     [DbContext(typeof(HLessDataContext))]
-    partial class HLessDataContextModelSnapshot : ModelSnapshot
+    [Migration("20191018153931_AddSite")]
+    partial class AddSite
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,7 +193,7 @@ namespace HLess.Data.Migrations
                         .HasColumnType("nvarchar(128)")
                         .HasMaxLength(128);
 
-                    b.Property<Guid?>("SiteId")
+                    b.Property<Guid>("OwnerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Slug")
@@ -203,7 +205,7 @@ namespace HLess.Data.Migrations
 
                     b.HasIndex("CreatedByUserId");
 
-                    b.HasIndex("SiteId");
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("ContentTypes");
                 });
@@ -416,9 +418,11 @@ namespace HLess.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HLess.Models.Entities.Site", "Site")
-                        .WithMany("ContentTypes")
-                        .HasForeignKey("SiteId");
+                    b.HasOne("HLess.Models.Entities.Account", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("HLess.Models.Entities.Site", b =>

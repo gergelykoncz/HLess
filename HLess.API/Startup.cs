@@ -1,6 +1,8 @@
 using HLess.API.DI;
+using HLess.API.Identity;
 using HLess.Data;
 using HLess.Models.Entities;
+using IdentityServer4.AspNetIdentity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -34,6 +36,13 @@ namespace HLess
                 .AddEntityFrameworkStores<HLessDataContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddIdentityServer()
+                .AddInMemoryIdentityResources(Config.Ids)
+                .AddInMemoryApiResources(Config.Apis)
+                .AddInMemoryClients(Config.Clients)
+                .AddResourceOwnerValidator<ResourceOwnerPasswordValidator<ApplicationUser>>()
+                .AddDeveloperSigningCredential();
+
             services.AddAuthentication();
             services.AddAuthorization();
 
@@ -65,6 +74,7 @@ namespace HLess
 
             app.UseRouting();
 
+            app.UseIdentityServer();
             app.UseAuthentication();
             app.UseAuthorization();
 
