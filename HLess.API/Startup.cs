@@ -1,9 +1,11 @@
 using HLess.API.DI;
+using HLess.API.ErrorHandling;
 using HLess.API.Identity;
 using HLess.API.Swagger;
 using HLess.Data;
 using HLess.Models.Entities;
 using IdentityServer4.AspNetIdentity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -38,13 +40,23 @@ namespace HLess
                 .AddDefaultTokenProviders();
 
             services.AddIdentityServer()
+                .AddJwtBearerClientAuthentication()
                 .AddInMemoryIdentityResources(Config.Ids)
                 .AddInMemoryApiResources(Config.Apis)
                 .AddInMemoryClients(Config.Clients)
                 .AddResourceOwnerValidator<ResourceOwnerPasswordValidator<ApplicationUser>>()
                 .AddDeveloperSigningCredential();
 
-            services.AddAuthentication();
+            services.AddAuthentication(config =>
+            {
+                config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(config =>
+            {
+                config.Authority = "https://localhost:44376/";
+                config.Audience = "hless.api";
+                config.RequireHttpsMetadata = false;
+            });
             services.AddAuthorization();
 
             services.AddMvcCore()
@@ -99,6 +111,8 @@ namespace HLess
             {
                 config.SwaggerEndpoint("/swagger/v1/swagger.json", "HLess API V1");
             });
+
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,10 +1,12 @@
 ﻿using HLess.Logic.Facades.Interfaces;
+using HLess.Models.Exceptions;
 using HLess.Models.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace HLess.API.Controllers
@@ -22,12 +24,12 @@ namespace HLess.API.Controllers
             this.facade = facade;
         }
 
-        [Route("{userId}/{includeDeleted?}")]
-        [HttpGet]
+        [HttpGet("{userId}")]
         [ProducesResponseType(typeof(IEnumerable<ContentTypeDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> Get(Guid userId, bool includeDeleted = false)
+        public async Task<IActionResult> Get(int userId)
         {
-            var result = await this.facade.GetContentTypesForUser(userId, includeDeleted);
+            //   throw new ApiException("INVALID_STUFF", HttpStatusCode.BadRequest);
+            var result = await this.facade.GetContentTypesForUser(new Guid(), false);
             return Ok(result);
         }
     }

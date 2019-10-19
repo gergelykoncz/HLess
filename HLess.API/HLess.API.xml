@@ -19,6 +19,12 @@
             Extension methods for dependency injection
             </summary>
         </member>
+        <member name="T:HLess.API.ErrorHandling.ErrorHandlerMiddleware">
+            <summary>
+            Middleware catching unhandled exceptions and standardizing
+            the error response.
+            </summary>
+        </member>
         <member name="T:HLess.API.Identity.Config">
             <summary>
             IdentityServer4 configuration

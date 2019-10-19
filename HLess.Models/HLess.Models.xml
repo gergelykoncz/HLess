@@ -211,6 +211,21 @@
             The name of the account.
             </summary>
         </member>
+        <member name="T:HLess.Models.Responses.ApiError">
+            <summary>
+            The generic error response of the API.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Responses.ApiError.StatusCode">
+            <summary>
+            The relevant HTTP status code.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Responses.ApiError.Message">
+            <summary>
+            The message (if any).
+            </summary>
+        </member>
         <member name="P:HLess.Models.Responses.BaseDto.Id">
             <summary>
             The Id of the resource.
