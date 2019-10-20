@@ -25,6 +25,11 @@
             the error response.
             </summary>
         </member>
+        <member name="T:HLess.API.Identity.BypassCorsPolicyService">
+            <summary>
+            Allow everyone to connect to identity server.
+            </summary>
+        </member>
         <member name="T:HLess.API.Identity.Config">
             <summary>
             IdentityServer4 configuration

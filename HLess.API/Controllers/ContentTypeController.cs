@@ -28,7 +28,7 @@ namespace HLess.API.Controllers
         [ProducesResponseType(typeof(IEnumerable<ContentTypeDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(int userId)
         {
-            //   throw new ApiException("INVALID_STUFF", HttpStatusCode.BadRequest);
+               throw new ApiException("INVALID_STUFF", HttpStatusCode.BadRequest);
             var result = await this.facade.GetContentTypesForUser(new Guid(), false);
             return Ok(result);
         }

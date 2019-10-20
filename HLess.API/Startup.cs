@@ -45,6 +45,7 @@ namespace HLess
                 .AddInMemoryApiResources(Config.Apis)
                 .AddInMemoryClients(Config.Clients)
                 .AddResourceOwnerValidator<ResourceOwnerPasswordValidator<ApplicationUser>>()
+                .AddCorsPolicyService<BypassCorsPolicyService>()
                 .AddDeveloperSigningCredential();
 
             services.AddAuthentication(config =>
@@ -58,6 +59,7 @@ namespace HLess
                 config.RequireHttpsMetadata = false;
             });
             services.AddAuthorization();
+            services.AddCors();
 
             services.AddMvcCore()
                 .AddApiExplorer();
@@ -94,6 +96,16 @@ namespace HLess
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, HLessDataContext context)
         {
+            // See https://stackoverflow.com/questions/53906866/neterr-invalid-http-response-error-after-post-request-with-angular-7
+            app.Use(async (ctx, next) =>
+            {
+                await next();
+                if (ctx.Response.StatusCode == 204)
+                {
+                    ctx.Response.ContentLength = 0;
+                }
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -113,6 +125,14 @@ namespace HLess
             });
 
             app.UseMiddleware<ErrorHandlerMiddleware>();
+
+            app.UseCors(c =>
+               c.AllowAnyHeader()
+               .AllowAnyMethod()
+               .WithOrigins("http://localhost:4200")
+               .SetIsOriginAllowedToAllowWildcardSubdomains()
+               .AllowCredentials()
+           );
 
             app.UseEndpoints(endpoints =>
             {

@@ -201,11 +201,6 @@
             The password of the user.
             </summary>
         </member>
-        <member name="P:HLess.Models.Requests.CreateAccountDto.ConfirmPassword">
-            <summary>
-            The password confirmation.
-            </summary>
-        </member>
         <member name="P:HLess.Models.Requests.CreateAccountDto.AccountName">
             <summary>
             The name of the account.

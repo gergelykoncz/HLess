@@ -21,13 +21,6 @@ namespace HLess.Models.Requests
         public string Password { get; set; }
 
         /// <summary>
-        /// The password confirmation.
-        /// </summary>
-        [Required]
-        [Compare("Password")]
-        public string ConfirmPassword { get; set; }
-
-        /// <summary>
         /// The name of the account.
         /// </summary>
         [Required]
