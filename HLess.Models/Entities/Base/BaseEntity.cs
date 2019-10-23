@@ -15,6 +15,8 @@ namespace HLess.Models.Entities.Base
         [Required]
         public DateTime CreatedDate { get; set; }
 
+        public Guid CreatedByUserId { get; set; }
+
         [Required]
         [ForeignKey("CreatedByUserId")]
         public ApplicationUser CreatedByUser { get; set; }

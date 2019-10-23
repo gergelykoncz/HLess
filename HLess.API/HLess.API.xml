@@ -14,6 +14,11 @@
             Endpoint for registering a new account.
             </summary>
         </member>
+        <member name="T:HLess.API.Controllers.ContentTypeController">
+            <summary>
+            Controller for working with content types.
+            </summary>
+        </member>
         <member name="T:HLess.API.DI.DIExtensions">
             <summary>
             Extension methods for dependency injection

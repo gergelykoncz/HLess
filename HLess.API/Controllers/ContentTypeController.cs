@@ -1,16 +1,18 @@
 ﻿using HLess.Logic.Facades.Interfaces;
-using HLess.Models.Exceptions;
 using HLess.Models.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Net;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace HLess.API.Controllers
 {
+    /// <summary>
+    /// Controller for working with content types.
+    /// </summary>
     [ApiVersion("1")]
     [ApiController]
     [Route("contentType")]
@@ -24,12 +26,21 @@ namespace HLess.API.Controllers
             this.facade = facade;
         }
 
-        [HttpGet("{userId}")]
+        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<ContentTypeDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> Get(int userId)
+        public async Task<IActionResult> Get()
         {
-               throw new ApiException("INVALID_STUFF", HttpStatusCode.BadRequest);
-            var result = await this.facade.GetContentTypesForUser(new Guid(), false);
+            Guid userId = Guid.Parse(User.Claims.Single(x => x.Type == "sub").Value);
+            var result = await this.facade.GetContentTypesForUser(userId, false);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(ContentTypeDto), StatusCodes.Status200OK)]
+        public async Task<IActionResult> Post(ContentTypeDto model)
+        {
+            Guid userId = Guid.Parse(User.Claims.Single(x => x.Type == "sub").Value);
+            var result = await this.facade.CreateContentType(userId, model);
             return Ok(result);
         }
     }

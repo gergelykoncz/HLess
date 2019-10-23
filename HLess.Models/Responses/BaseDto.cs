@@ -7,7 +7,7 @@ namespace HLess.Models.Responses
         /// <summary>
         /// The Id of the resource.
         /// </summary>
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
         /// <summary>
         /// The user-friendly name of the resource.

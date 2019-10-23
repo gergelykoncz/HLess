@@ -206,6 +206,16 @@
             The name of the account.
             </summary>
         </member>
+        <member name="P:HLess.Models.Requests.CreateAccountDto.FirstName">
+            <summary>
+            The first name of the user.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Requests.CreateAccountDto.LastName">
+            <summary>
+            The last name of the user.
+            </summary>
+        </member>
         <member name="T:HLess.Models.Responses.ApiError">
             <summary>
             The generic error response of the API.
@@ -254,6 +264,11 @@
         <member name="P:HLess.Models.Responses.ContentTypeDto.Fields">
             <summary>
             The fields associated with this content type.
+            </summary>
+        </member>
+        <member name="P:HLess.Models.Responses.ContentTypeDto.SiteId">
+            <summary>
+            Identifier of the site the new content type should belong to.
             </summary>
         </member>
     </members>

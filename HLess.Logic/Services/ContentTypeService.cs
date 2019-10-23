@@ -22,5 +22,10 @@ namespace HLess.Logic.Services
             var contentTypes = await this.repository.GetByAsync(x => x.Site.Account.AccountUsers.Any(au => au.UserId == userId) && includeDeleted ? x.Deleted == true : x.Deleted == false);
             return contentTypes;
         }
+
+        public async Task<ContentType> CreateContentType(ContentType value)
+        {
+            return await this.repository.InsertAsync(value);
+        }
     }
 }

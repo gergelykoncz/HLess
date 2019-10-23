@@ -11,7 +11,8 @@ namespace HLess.Models.Entities
     public class ApplicationUser : IdentityUser<Guid>, IEntity
     {
         public bool Deleted { get; set; }
-
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public virtual ICollection<AccountUser> AccountUsers { get; set; }
     }
 }

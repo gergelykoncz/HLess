@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace HLess.Models.Responses
 {
@@ -11,5 +12,10 @@ namespace HLess.Models.Responses
         /// The fields associated with this content type.
         /// </summary>
         public IEnumerable<ContentFieldDto> Fields { get; set; }
+
+        /// <summary>
+        /// Identifier of the site the new content type should belong to.
+        /// </summary>
+        public Guid? SiteId { get; set; }
     }
 }

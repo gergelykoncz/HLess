@@ -1,5 +1,6 @@
 ﻿using HLess.Logic.Facades.Interfaces;
 using HLess.Logic.Services.Interfaces;
+using HLess.Models.Entities;
 using HLess.Models.Responses;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,42 @@ namespace HLess.Logic.Facades
                     FieldType = f.FieldType
                 })
             });
+        }
+
+        public async Task<ContentTypeDto> CreateContentType(Guid userId, ContentTypeDto model)
+        {
+            var ctype = new ContentType
+            {
+                CreatedByUserId = userId,
+                CreatedDate = DateTime.Now,
+                Fields = model.Fields.Select(f => new ContentField
+                {
+                    CreatedByUserId = userId,
+                    CreatedDate = DateTime.Now,
+                    FieldType = f.FieldType,
+                    Name = f.Name,
+                    Slug = f.Slug
+                }).ToList(),
+                Name = model.Name,
+                Slug = model.Slug,
+                SiteId = model.SiteId
+            };
+
+            var created = await this.service.CreateContentType(ctype);
+            return new ContentTypeDto
+            {
+                Fields = created.Fields.Select(f => new ContentFieldDto
+                {
+                    FieldType = f.FieldType,
+                    Id = f.Id,
+                    Name = f.Name,
+                    Slug = f.Slug
+                }),
+                Id = created.Id,
+                Name = created.Name,
+                SiteId = created.SiteId,
+                Slug = created.Slug
+            };
         }
     }
 }

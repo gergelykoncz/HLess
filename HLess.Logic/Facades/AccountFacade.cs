@@ -23,7 +23,9 @@ namespace HLess.Logic.Facades
             var user = new ApplicationUser
             {
                 Email = model.Email,
-                UserName = model.Email
+                UserName = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName
             };
             await this.accountService.Register(user, model.Password);
 

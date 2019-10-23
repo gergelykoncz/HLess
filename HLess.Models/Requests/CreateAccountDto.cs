@@ -25,5 +25,17 @@ namespace HLess.Models.Requests
         /// </summary>
         [Required]
         public string AccountName { get; set; }
+
+        /// <summary>
+        /// The first name of the user.
+        /// </summary>
+        [Required]
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// The last name of the user.
+        /// </summary>
+        [Required]
+        public string LastName { get; set; }
     }
 }
